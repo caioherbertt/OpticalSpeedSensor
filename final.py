@@ -32,12 +32,12 @@ try:
     while True:
         a = (rc_time(pin_to_circuit)*5/65536)
         print(a)
+        db = firebase.database()
+        db.child("Sensor2").child("Medida").push(a)
         time.sleep(0.1)
 except KeyboardInterrupt:
     pass
 finally:
     GPIO.cleanup()
-db = firebase.database()
 dado1 = "432432"
 dado = random.random()
-db.child("Sensor2").child("Medida").push(a)

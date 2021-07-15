@@ -18,8 +18,9 @@ def rc_time (pin_to_circuit):
 try:
     while True:
         a = (rc_time(pin_to_circuit)*5/65536)
-        print(a)
         time.sleep(0.1)
+        if a <= 5.0:
+          print(a);
 except KeyboardInterrupt:
     pass
 finally:
