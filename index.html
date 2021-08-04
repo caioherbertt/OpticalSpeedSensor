@@ -1,0 +1,39 @@
+<html>
+    <body>
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/8.8.1/firebase.js"></script>
+
+    <!-- TODO: Add SDKs for Firebase products that you want to use
+        https://firebase.google.com/docs/web/setup#available-libraries -->
+
+    <script>
+      // Your web app's Firebase configuration
+      var firebaseConfig = {
+
+  };
+      // Initialize Firebase
+      firebase.initializeApp(firebaseConfig);
+      firebase.auth().tenantId = 'TENANT_PROJECT_ID';
+
+      // All future sign-in request now include tenant ID.
+      var database = firebase.database();
+    </script>
+        <script>          
+          const dbRef = firebase.database().ref();
+          dbRef.child("Sensor2").child("Medida").get().then((snapshot) => {
+            if (snapshot.exists()) {
+              console.log(snapshot.val());
+            } else {
+              console.log("Deu ruim");
+            }
+            var dado = snapshot.val();
+            console.log(dado);
+            document.body.innerHTML = "<h1>Valores" + dado + "</h1>"
+          }).catch((error) => {
+            console.error(error);
+          });
+         
+        </script>
+
+  </body>
+</html>
